@@ -1,6 +1,6 @@
 ---
 - name: launchin complete apache website
-  hosts: localhost
+  hosts: all
   become: true
   tasks:
           - name: installing apache
