@@ -3,7 +3,7 @@
   hosts: all
   become: true
   tasks:
-          - name: installing apache
+          - name: installing telnet
             apt:
                     name: telnet
                     state: present
