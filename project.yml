@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+  tasks:
+          - name: install tomcat
+            apt:
+                    name: tomcat9
+                    state: present
+        
+          - name: copy War
+            copy:
+                    src: /home/labsuser/codesample/boxfuse-sample-java-war-hello/target/hello-1.0.war
+                    dest: /var/lib/tomcat9/webapps/ROOT/
+
+          - name: Unzip WAR file
+            unarchive: src=/var/lib/tomcat9/webapps/ROOT/hello-1.0.war dest=/var/lib/tomcat9/webapps/ROOT/
+            notify:
+                - restart tomcat
+
+  handlers:
+    - name: restart tomcat
+      service: name=tomcat9 state=restarted

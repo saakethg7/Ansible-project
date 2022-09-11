@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+          - name: Build Maven Package
+            command: sudo mvn package
+            args:
+                    chdir: /home/labsuser/codesample/boxfuse-sample-java-war-hello 
+            register: command_output
+
+          - debug:
+                var: command_output.stdout_lines
+
+
